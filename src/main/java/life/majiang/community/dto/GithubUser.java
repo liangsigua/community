@@ -4,7 +4,7 @@ package life.majiang.community.dto;
 //provider的返回值
 public class GithubUser {
     private String name;
-    private Long id;
+    private Long id;     //long类型：除了支持github，还打算支持其它平台
     private String bio;
 
     public String getName() {
