@@ -57,7 +57,7 @@ public class PublishController {
         //获取user对象，为下面的setCreator做准备
         User user = null;
         Cookie[] cookies = request.getCookies();
-        if(cookies != null) {
+        if(cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();

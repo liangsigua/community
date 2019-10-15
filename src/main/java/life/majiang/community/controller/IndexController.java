@@ -20,7 +20,7 @@ public class IndexController {
     public String index(HttpServletRequest request){
         //当用户再次登陆的时候，根据cookie里的token去数据库里查询是否有这个用户，有就把这个用户写入到session中
         Cookie[] cookies = request.getCookies();
-        if (cookies != null){
+        if (cookies != null && cookies.length != 0){
             for(Cookie cookie: cookies){
                 if (cookie.getName().equals("token")){
                     String token = cookie.getValue();

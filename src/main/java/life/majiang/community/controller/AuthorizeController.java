@@ -56,6 +56,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatarUrl());
             userMapper.insert(user);  //就相当于写入session，用数据库的实物存储代替了写入session
             //把token放到cookie里，目的就是往前端去写一个我们定义的cookie
             response.addCookie(new Cookie("token",token));

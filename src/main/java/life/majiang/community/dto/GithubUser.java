@@ -6,6 +6,15 @@ public class GithubUser {
     private String name;
     private Long id;     //long类型：除了支持github，还打算支持其它平台
     private String bio;
+    private String avatarUrl;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public String getName() {
         return name;
