@@ -11,4 +11,14 @@ body{
     float: right;
     margin-bottom: 15px;
 }
-
+/*发布人头像的宽高*/
+.media-object{
+    width:40px;
+    height:40px;
+}
+/*内容“几 个回复 •几  次浏览 • 几 分钟前”的样式*/
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
