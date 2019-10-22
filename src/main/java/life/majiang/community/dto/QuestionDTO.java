@@ -2,7 +2,7 @@ package life.majiang.community.dto;
 
 import life.majiang.community.model.User;
 
-public class QuestionDto {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;

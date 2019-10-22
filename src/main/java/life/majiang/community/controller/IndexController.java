@@ -1,9 +1,8 @@
 package life.majiang.community.controller;
 
-import life.majiang.community.dto.QuestionDto;
-import life.majiang.community.mapper.QuestionMapper;
+import life.majiang.community.dto.PaginationDTO;
+import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.mapper.UserMapper;
-import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
 import life.majiang.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,9 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request,Model model){
+    public String index(HttpServletRequest request,Model model,
+                        @RequestParam(value = "page", defaultValue = "1") Integer page,
+                        @RequestParam(value = "size", defaultValue = "5") Integer size){
         //当用户再次登陆的时候，根据cookie里的token去数据库里查询是否有这个用户，有就把这个用户写入到session中
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length != 0){
@@ -42,8 +43,8 @@ public class IndexController {
             }
         }
 
-        List<QuestionDto> questionList= questionService.list();
-        model.addAttribute("questions", questionList);
+        PaginationDTO paginationDTO = questionService.list(page,size);
+        model.addAttribute("paginationDTO", paginationDTO);
         return "index";
     }
 }
