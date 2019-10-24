@@ -14,19 +14,9 @@ public class PaginationDTO {
     private Integer page;
     private Integer totalPage;
 
-    public void setPagination(Integer totalCount, Integer page, Integer size) {
-                                 //  34           1             5
-        if (totalCount % size == 0){
-            totalPage = totalCount/size;
-        }else{
-            totalPage = totalCount/size + 1;
-        }
-        if (page < 1){
-            page = 1;
-        }
-        if (page > totalPage){
-            page = totalPage;
-        }
+    public void setPagination(Integer totalPage, Integer page) {
+                                    //  7                 1
+        this.totalPage = totalPage;
         this.page = page;
         pages.add(page);           //先把当前页放进去pages里
         for (int i = 1; i <= 3; i++){    //遍历三次的原因，是因为我们只需要前三页或后三页
