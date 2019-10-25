@@ -16,13 +16,21 @@ body{
     width:40px;
     height:40px;
 }
-/*内容“几 个回复 •几  次浏览 • 几 分钟前”的样式*/
+/*index.html的内容“几 个回复 •几  次浏览 • 几 分钟前”的样式
+profile.html的作者、阅读数、发布时间的样式*/
 .text-desc{
     font-size: 12px;
     font-weight: normal;
     color: #999;
 }
 
+/*profile.html的右边列表的样式*/
 .profile .section{
     margin-top: 15px;
+}
+
+/*profile.html的编辑按钮的样式*/
+.community-menu{
+    color: #999;
+    font-size: 13px;
 }
