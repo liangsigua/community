@@ -1,12 +1,15 @@
 package life.majiang.community.controller;
 
+import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
+import life.majiang.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,7 +18,21 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PublishController {
     @Autowired
-    private QuestionMapper questionMapper;
+    private QuestionService questionService;
+
+    //编辑页面
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model){
+        //原本这里应该是直接通过questionMapper.getById(id)拿到question对象，但是为了统一只注入QuestionService，
+        //所以改成了使用questionService.getById(id)，反正QuestionDTO对象也可以拿到title、description、tag
+        //Question question = questionMapper.getById(id);
+        QuestionDTO questionDTO = questionService.getById(id);
+        model.addAttribute("title", questionDTO.getTitle());
+        model.addAttribute("description", questionDTO.getDescription());
+        model.addAttribute("tag", questionDTO.getTag());
+        model.addAttribute("id", questionDTO.getId());
+        return "publish";
+    }
 
     //渲染页面
     @GetMapping("/publish")
@@ -28,6 +45,7 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
+                            @RequestParam("id") Integer id,
                             HttpServletRequest request,
                             Model model) {
 
@@ -55,15 +73,13 @@ public class PublishController {
             model.addAttribute("error", "用户未登陆");
             return "publish";
         }
-
         Question question = new Question();
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        question.setGmtCreate(System.currentTimeMillis());
-        question.setGmtModified(question.getGmtCreate());
         question.setCreator(user.getId());
-        questionMapper.create(question);
+        question.setId(id);
+        questionService.createOrUpdate(question);
         //如果成功，跳转到首页，把信息展示到首页去
         return "redirect:/";
     }
