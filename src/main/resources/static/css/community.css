@@ -34,3 +34,10 @@ profile.html的作者、阅读数、发布时间的样式*/
     color: #999;
     font-size: 13px;
 }
+
+/*错误信息的样式*/
+.jumbotron{
+    margin-top: 170px;
+    text-align: center;
+    background-color: #dedede;
+}

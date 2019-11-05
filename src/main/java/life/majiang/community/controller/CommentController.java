@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+
 
 @Controller
 public class CommentController {
@@ -17,7 +19,7 @@ public class CommentController {
     private CommentMapper commentMapper;
 
     @ResponseBody
-    @RequestMapping(name = "/comment", method = RequestMethod.POST)
+//    @RequestMapping(name = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentDTO commentDTO){
         Comment comment = new Comment();
         comment.setParentId(commentDTO.getParentId());
@@ -27,6 +29,8 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
         commentMapper.insert(comment);
-        return null;
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+//        objectObjectHashMap.put("message", "成功");
+        return objectObjectHashMap;
     }
 }
