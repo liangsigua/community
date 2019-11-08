@@ -22,7 +22,7 @@ public class PublishController {
 
     //编辑页面
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model){
+    public String edit(@PathVariable("id") Long id, Model model){
         //原本这里应该是直接通过questionMapper.getById(id)拿到question对象，但是为了统一只注入QuestionService，
         //所以改成了使用questionService.getById(id)，反正QuestionDTO对象也可以拿到title、description、tag
         //Question question = questionMapper.getById(id);
@@ -45,7 +45,7 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam("id") Integer id,
+                            @RequestParam("id") Long id,
                             HttpServletRequest request,
                             Model model) {
 

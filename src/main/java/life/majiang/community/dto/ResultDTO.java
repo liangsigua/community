@@ -1,6 +1,8 @@
 package life.majiang.community.dto;
 
 import life.majiang.community.exception.CustomizeErrorCode;
+import life.majiang.community.exception.CustomizeException;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ResultDTO {
     private Integer code;
@@ -38,5 +40,10 @@ public class ResultDTO {
 
     public static ResultDTO of(CustomizeErrorCode code) {
         return of(code.getCode(), code.getMessage());
+    }
+
+    public static ResultDTO of(CustomizeException e) {
+        return of(e.getCode(), e.getMessage());
+
     }
 }

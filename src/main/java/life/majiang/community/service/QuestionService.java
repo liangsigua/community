@@ -60,7 +60,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public PaginationDTO listByUserId(Integer id, Integer page, Integer size) {
+    public PaginationDTO listByUserId(Long id, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = questionMapper.countByUserId(id);       //通过查询得到我的问题的数据总数
         Integer totalPage;
@@ -92,7 +92,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         QuestionDTO questionDTO = new QuestionDTO();
         Question question = questionMapper.getById(id);
         if (question == null){
@@ -117,7 +117,7 @@ public class QuestionService {
         }
     }
 
-    public void incView(Integer id) {
+    public void incView(Long id) {
 //        Question question = questionMapper.getById(id);
 //        question.setViewCount(question.getViewCount() + 1);
         questionMapper.updateByViewCount(id);

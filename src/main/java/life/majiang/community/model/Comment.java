@@ -4,7 +4,7 @@ public class Comment {
     private Long id;
     private Long parentId;
     private Integer type;
-    private Integer commentator;
+    private Long commentator;
     private String content;
     private Long gmtCreate;
     private Long gmtModified;
@@ -34,11 +34,11 @@ public class Comment {
         this.parentId = parentId;
     }
 
-    public Integer getCommentator() {
+    public Long getCommentator() {
         return commentator;
     }
 
-    public void setCommentator(Integer commentator) {
+    public void setCommentator(Long commentator) {
         this.commentator = commentator;
     }
 

@@ -1,22 +1,22 @@
 package life.majiang.community.model;
 
 public class Question {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Long gmtCreate;
     private Long gmtModified;
-    private Integer creator;
+    private Long creator;
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
     private String tag;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,11 +52,11 @@ public class Question {
         this.gmtModified = gmtModified;
     }
 
-    public Integer getCreator() {
+    public Long getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
+    public void setCreator(Long creator) {
         this.creator = creator;
     }
 
