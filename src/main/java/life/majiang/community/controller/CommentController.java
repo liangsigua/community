@@ -9,28 +9,24 @@ import life.majiang.community.model.User;
 import life.majiang.community.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 
 
 @Controller
 public class CommentController {
     @Autowired
     private CommentService commentService;
-
     @ResponseBody
-    @RequestMapping(name = "/comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentDTO commentDTO,
                        HttpServletRequest request){
-//        User user = (User)request.getSession().getAttribute("user");
-//        if (user == null){
-//            return ResultDTO.of(CustomizeErrorCode.NO_LOGIN);
-//        }
+        User user = (User)request.getSession().getAttribute("user");
+        if (user == null){
+            return ResultDTO.of(CustomizeErrorCode.NO_LOGIN);
+        }
         Comment comment = new Comment();
         comment.setParentId(commentDTO.getParentId());
         comment.setContent(commentDTO.getContent());

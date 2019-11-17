@@ -11,19 +11,8 @@
 
 [spring devtools](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)
 
-##脚本
-建表语句
-```sql
-CREATE TABLE USER
-(
-    ID int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    ACCOUNT_ID varchar(100),
-    NAME varchar(50),
-    TOKEN varchar(36),
-    GMT_CREATE bigint,
-    GMT_MODIFIED bigint
-)
-```
+[springboot文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/)
+
 
 	
 
