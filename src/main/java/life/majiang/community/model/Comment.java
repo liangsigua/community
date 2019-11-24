@@ -73,4 +73,18 @@ public class Comment {
     public void setLikeCount(Long likeCount) {
         this.likeCount = likeCount;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", type=" + type +
+                ", commentator=" + commentator +
+                ", content='" + content + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", likeCount=" + likeCount +
+                '}';
+    }
 }

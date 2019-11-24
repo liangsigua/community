@@ -7,7 +7,7 @@ public class Question {
     private Long gmtCreate;
     private Long gmtModified;
     private Long creator;
-    private Integer commentCount;
+    private Integer commentCount;    //回复数
     private Integer viewCount;
     private Integer likeCount;
     private String tag;

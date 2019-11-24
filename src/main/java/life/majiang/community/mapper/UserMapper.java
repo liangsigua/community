@@ -3,6 +3,8 @@ package life.majiang.community.mapper;
 import life.majiang.community.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 
 @Mapper
 public interface UserMapper {
@@ -14,6 +16,9 @@ public interface UserMapper {
 
     @Select("select * from user where id=#{id}")
     User findById(@Param("id")Long id);
+
+//    @Select("select * from user where id=#{id}")
+//    List<User> findListById(@Param("id")Long id);
 
     @Select("select * from user where account_id=#{accountId}")
     User findByAccountId(@Param("accountId") String accountId);

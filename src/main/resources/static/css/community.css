@@ -52,3 +52,35 @@ profile.html的作者、阅读数、发布时间的样式*/
     float: right;
     margin-bottom: 15px;
 }
+
+/*评论列表里的用户名的样式*/
+.comment_list .username{
+    color: #999;
+    margin-bottom: 5px;
+}
+
+/* ？个回复下的分隔符的样式*/
+.comment_separate{
+    margin-top: 0;
+}
+
+/*回复列表的点赞按钮下的分隔符的样式*/
+.comment_list_separate{
+    margin-top: 5px;
+}
+
+/*统一给评论列表里的点赞、回复按钮、时间添加颜色样式*/
+.menu{
+    color: #999;
+}
+
+/*给评论列表里的点赞、回复按钮添加鼠标悬浮样式*/
+.menu .icon{
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/*给评论列表里的点赞、回复按钮添加鼠标悬浮颜色样式*/
+.menu .icon:hover{
+    color: #499ef3;
+}
