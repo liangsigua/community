@@ -4,9 +4,18 @@ import life.majiang.community.exception.CustomizeErrorCode;
 import life.majiang.community.exception.CustomizeException;
 import org.springframework.web.servlet.ModelAndView;
 
-public class ResultDTO {
+public class ResultDTO<T> {
     private Integer code;
     private String message;
+    private T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 
     public Integer getCode() {
         return code;
@@ -35,6 +44,14 @@ public class ResultDTO {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
         resultDTO.setMessage("请求成功");
+        return resultDTO;
+    }
+
+    public static<T> ResultDTO ok(T t) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage("请求成功");
+        resultDTO.setData(t);
         return resultDTO;
     }
 

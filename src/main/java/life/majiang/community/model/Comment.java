@@ -8,7 +8,16 @@ public class Comment {
     private String content;
     private Long gmtCreate;
     private Long gmtModified;
-    private Long likeCount;
+    private Integer likeCount;
+    private Integer commentCount;
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public Integer getType() {
         return type;
@@ -66,11 +75,11 @@ public class Comment {
         this.gmtModified = gmtModified;
     }
 
-    public Long getLikeCount() {
+    public Integer getLikeCount() {
         return likeCount;
     }
 
-    public void setLikeCount(Long likeCount) {
+    public void setLikeCount(Integer likeCount) {
         this.likeCount = likeCount;
     }
 
@@ -85,6 +94,7 @@ public class Comment {
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", likeCount=" + likeCount +
+                ", commentCount=" + commentCount +
                 '}';
     }
 }

@@ -10,7 +10,8 @@ public class CommentDTO {
     private String content;
     private Long gmtCreate;
     private Long gmtModified;
-    private Long likeCount;
+    private Integer likeCount;
+    private Integer commentCount;
     private User user;
 
     public Long getId() {
@@ -61,11 +62,11 @@ public class CommentDTO {
         this.gmtModified = gmtModified;
     }
 
-    public Long getLikeCount() {
+    public Integer getLikeCount() {
         return likeCount;
     }
 
-    public void setLikeCount(Long likeCount) {
+    public void setLikeCount(Integer likeCount) {
         this.likeCount = likeCount;
     }
 
@@ -85,6 +86,15 @@ public class CommentDTO {
         this.user = user;
     }
 
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
+
     @Override
     public String toString() {
         return "CommentDTO{" +
@@ -92,10 +102,11 @@ public class CommentDTO {
                 ", parentId=" + parentId +
                 ", type=" + type +
                 ", commentator=" + commentator +
+                ", content='" + content + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", likeCount=" + likeCount +
-                ", content='" + content + '\'' +
+                ", commentCount=" + commentCount +
                 ", user=" + user +
                 '}';
     }

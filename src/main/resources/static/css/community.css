@@ -74,13 +74,36 @@ profile.html的作者、阅读数、发布时间的样式*/
     color: #999;
 }
 
-/*给评论列表里的点赞、回复按钮添加鼠标悬浮样式*/
+/*给一级评论列表里的点赞添加鼠标悬浮样式*/
 .menu .icon{
     margin-right: 8px;
     cursor: pointer;
 }
 
+/*给二级回复按钮添加鼠标悬浮样式*/
+.menu .icon_style{
+    cursor: pointer;
+}
+
+/*当点击回复按钮打开二级评论列表时，回复按钮处于激活状态*/
+.menu .active{
+    color: #499ef3;
+}
+
 /*给评论列表里的点赞、回复按钮添加鼠标悬浮颜色样式*/
 .menu .icon:hover{
     color: #499ef3;
+}
+
+/*整个二级评论列表的样式*/
+.sub-comments{
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding-top: 14px;
+}
+
+/*二级评论列表下面的回复取消按钮离外边框的距离*/
+.sub-comments .style {
+    margin-bottom: 13px;
 }

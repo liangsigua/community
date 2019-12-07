@@ -38,7 +38,7 @@ public class CommentService {
             throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
         }
         if (comment.getType() == CommentTypeEnum.QUESTION.getType()){
-            //回复问题
+            //一级回复评论（回复问题）
             Question question = questionMapper.getById(comment.getParentId());
             if (question == null){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -46,17 +46,20 @@ public class CommentService {
             commentMapper.insert(comment);
             questionMapper.updateByCommentCount(question.getId());
         }else{
-            //回复评论
+            //二级回复评论
             Comment dbComment = commentMapper.getById(comment.getParentId());
             if (dbComment == null){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            //当发布二级评论的时候，把一级回复评论的commentCount加一。这样才能展示出这条一级评论下有多少条二级回复评论
+            commentMapper.updateByCommentCount(comment.getParentId());
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long id) {
-        List<Comment> comments = commentMapper.getAllById(id);
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
+        //这里要判断查询的是一级回复评论还是二级回复评论
+        List<Comment> comments = commentMapper.getAllById(id, type.getType());
         //Commentator = user.getId()
         List<CommentDTO> commentDTOList = new ArrayList<>();
         for (Comment comment : comments) {
@@ -71,6 +74,7 @@ public class CommentService {
             commentDTO.setGmtModified(comment.getGmtModified());
             commentDTO.setLikeCount(comment.getLikeCount());
             commentDTO.setUser(user);
+            commentDTO.setCommentCount(comment.getCommentCount());
             commentDTOList.add(commentDTO);
         }
         return commentDTOList;
