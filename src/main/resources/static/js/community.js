@@ -119,8 +119,5 @@ function collapseComments(e) {
                 e.classList.add("active");
             });
         }
-
-
     }
-    // console.log(comment);
 }

@@ -91,4 +91,20 @@ public class Question {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", creator=" + creator +
+                ", commentCount=" + commentCount +
+                ", viewCount=" + viewCount +
+                ", likeCount=" + likeCount +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

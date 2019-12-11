@@ -8,12 +8,15 @@ import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -104,6 +107,23 @@ public class QuestionService {
         return questionDTO;
     }
 
+    /**
+     * 根据问题的标签来关联出其它问题
+     * @param questionDTO
+     * @return
+     */
+    public List<Question> selectRelated(QuestionDTO questionDTO) {
+        //判断问题的标签是否为空，但是这种情况不存在，因为我们前面就做了校验
+        if(StringUtils.isBlank(questionDTO.getTag())){
+            return new ArrayList<>();
+        }
+        //通过逗号来分隔标签里面的字符串
+        String[] tags = StringUtils.split(questionDTO.getTag(), ",");
+        String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        List<Question> questions = questionMapper.selectRelated(questionDTO.getId(), regexpTag);
+        return questions;
+    }
+
     public void createOrUpdate(Question question) {
         if (question.getId() == null){
             //说明是创建问题
@@ -122,4 +142,6 @@ public class QuestionService {
 //        question.setViewCount(question.getViewCount() + 1);
         questionMapper.updateByViewCount(id);
     }
+
+
 }

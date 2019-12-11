@@ -25,6 +25,15 @@ profile.html的作者、阅读数、发布时间的样式*/
     color: #999;
 }
 
+/*问题页面里的标签内层样式（标签与标签之间有6px的距离）*/
+.tag_style{
+    margin-right: 6px;
+}
+
+/*问题页面里的标签外层的样式（标签离上面的内容有20px的距离）*/
+.tags_style{
+    margin-top: 20px;
+}
 /*profile.html的右边列表的样式*/
 .profile .section{
     margin-top: 15px;
@@ -106,4 +115,17 @@ profile.html的作者、阅读数、发布时间的样式*/
 /*二级评论列表下面的回复取消按钮离外边框的距离*/
 .sub-comments .style {
     margin-bottom: 13px;
+}
+
+/*问题页面右边的相关问题下的问题展示样式*/
+.question_related{
+    list-style: none;
+    padding-left: 0px;
+    line-height: 28px;
+}
+
+/*问题页面右边的图片的样式*/
+.question_images{
+    width: 95%;    /*由于图片太大了，所以直接设置成宽度100%，就不会超出页面*/
+    margin-left: 15px;
 }
