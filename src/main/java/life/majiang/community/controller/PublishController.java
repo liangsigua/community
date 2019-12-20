@@ -1,10 +1,13 @@
 package life.majiang.community.controller;
 
+import life.majiang.community.cache.TagCache;
 import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
 import life.majiang.community.service.QuestionService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 @Controller
 public class PublishController {
     @Autowired
     private QuestionService questionService;
 
-    //编辑页面
+    //问题编辑页面
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable("id") Long id, Model model){
         //原本这里应该是直接通过questionMapper.getById(id)拿到question对象，但是为了统一只注入QuestionService，
@@ -31,12 +35,14 @@ public class PublishController {
         model.addAttribute("description", questionDTO.getDescription());
         model.addAttribute("tag", questionDTO.getTag());
         model.addAttribute("id", questionDTO.getId());
+        model.addAttribute("tagse", TagCache.get());
         return "publish";
     }
 
-    //渲染页面
+    //发布页面（渲染页面）
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("tagse", TagCache.get());
         return "publish";
     }
 
@@ -53,6 +59,7 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
+        model.addAttribute("tagse", TagCache.get());
 
         //校验输入内容
         if (title == null || title == ""){
@@ -65,6 +72,13 @@ public class PublishController {
         }
         if (tag == null || tag == ""){
             model.addAttribute("error", "标签不能为空");
+            return "publish";
+        }
+
+        //TagCache封装了一个校验标签的方法，如果这个方法有值，说明用户输入的标签不能用
+        String invalid = TagCache.checkInvalid(tag);
+        if (StringUtils.isNotBlank(invalid)){
+            model.addAttribute("error", "输入非法标签：" + invalid);
             return "publish";
         }
 

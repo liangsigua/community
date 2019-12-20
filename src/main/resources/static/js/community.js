@@ -121,3 +121,26 @@ function collapseComments(e) {
         }
     }
 }
+
+/**
+ *
+ * 标签页里的选择标签逻辑
+ * @param value
+ */
+function selectTag(e) {
+    var previous = $("#tag").val();
+    var value = e.getAttribute("data-tag");
+
+    //当前input框里的标签和标签页里的标签不同时，才执行下面代码
+    if(previous.indexOf(value) == -1){
+        if(previous){
+            $("#tag").val(previous + "," + value);
+        }else{
+            $("#tag").val(value);
+        }
+    }
+}
+
+function showTagPane() {
+    $("#tagPane").show();
+}

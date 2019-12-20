@@ -25,24 +25,30 @@ profile.html的作者、阅读数、发布时间的样式*/
     color: #999;
 }
 
-/*问题页面里的标签内层样式（标签与标签之间有6px的距离）*/
+/*问题页面的标签内层样式（标签与标签之间有6px的距离）*/
 .tag_style{
     margin-right: 6px;
+
 }
 
-/*问题页面里的标签外层的样式（标签离上面的内容有20px的距离）*/
+/*问题页面里的标签外层的样式（标签离上面的内容有10px的距离）*/
 .tags_style{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 /*profile.html的右边列表的样式*/
 .profile .section{
     margin-top: 15px;
 }
 
-/*profile.html的编辑按钮的样式*/
+/*编辑/删除按钮的样式*/
 .community-menu{
     color: #999;
     font-size: 13px;
+}
+
+/*编辑加删除按钮的总样式（距离上面的内容15px）*/
+.edit-del-style{
+    margin-top: 15px;
 }
 
 /*错误信息的样式*/
@@ -126,6 +132,37 @@ profile.html的作者、阅读数、发布时间的样式*/
 
 /*问题页面右边的图片的样式*/
 .question_images{
-    width: 95%;    /*由于图片太大了，所以直接设置成宽度100%，就不会超出页面*/
+    width: 95%;
     margin-left: 15px;
+}
+
+/*发布页面的标签页里面的标签的样式*/
+.tab-content{
+    margin: 10px 10px;   //标签距离上下10px
+}
+
+/*发布页面的标签页的样式（外边框）*/
+.publish-tags-style{
+    border: 3px solid #eee;
+    border-radius: 5px;
+    display: none;
+    padding: 10px;       //边框距离里面的内容10px
+}
+
+/*分布页面的标签页里的标签样式*/
+.publish_tag_style{
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+/*把发起标题和警告框放在同一行上*/
+.publish_style{
+    display: inline-block;
+}
+
+/*把发起标题和警告框放在同一行上，而且取消警告框的默认下面有20px距离的样式*/
+.publish_alert_style{
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 0px;
 }
