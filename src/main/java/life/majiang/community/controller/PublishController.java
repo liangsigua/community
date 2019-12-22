@@ -35,14 +35,14 @@ public class PublishController {
         model.addAttribute("description", questionDTO.getDescription());
         model.addAttribute("tag", questionDTO.getTag());
         model.addAttribute("id", questionDTO.getId());
-        model.addAttribute("tagse", TagCache.get());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
     //发布页面（渲染页面）
     @GetMapping("/publish")
     public String publish(Model model) {
-        model.addAttribute("tagse", TagCache.get());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
@@ -59,7 +59,7 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
-        model.addAttribute("tagse", TagCache.get());
+        model.addAttribute("tags", TagCache.get());
 
         //校验输入内容
         if (title == null || title == ""){

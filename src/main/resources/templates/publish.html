@@ -38,17 +38,17 @@
                     <label for="tag">添加标签：</label>
                     <input type="text" class="form-control" id="tag" name="tag" th:value="${tag}" placeholder="输入标签，以逗号分隔" onclick="showTagPane()">
                     <!--标签框-->
-                    <div id="tagPane" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 publish-tags-style">
+                    <div id="tagPane" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 publish-tags-style">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation"  th:each="selectCategory:${tagse}">
+                            <li role="presentation"  th:each="selectCategory,selectCategoryStat:${tags}" th:class="${selectCategoryStat.first ? 'active' : '' }">
                                 <a th:href="${'#' + selectCategory.categoryName}" aria-controls="home" role="tab" data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
                             </li>
                         </ul>
-                        <!--这个class="tab-content"不能修改，修改了后遍历的所有的数据全部都显示出来，而不是原来的点哪个标签页就出现哪些标签-->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" th:each="selectCategory:${tagse}" th:id="${selectCategory.categoryName}">
+                            <div role="tabpanel" th:each="selectCategory:${tags}" th:id="${selectCategory.categoryName}" th:class="${selectCategoryStat.first ?'tab-pane active':'tab-pane'}">
                                 <span >
-                                    <span class="label label-info publish_tag_style" th:each="selectTag:${selectCategory.tags}" onclick="selectTag(this)" th:text="${selectTag}" th:data-tag="${selectTag}">
+                                    <span class="label label-info" th:each="selectTag:${selectCategory.tags}">
+                                        <span  onclick="selectTag(this)" th:text="${selectTag}" th:data-tag="${selectTag}"></span>
                                     </span>
                                 </span>
                             </div>

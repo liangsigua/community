@@ -18,15 +18,26 @@
     <div class="row">
         <!--左边列表-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2><span th:text="${questionDTO.title}"></span></h2>
-                <span class="text-desc">
-                作者：<span th:text="${questionDTO.user.name}"></span> |
-                阅读数：<span th:text="${questionDTO.viewCount}"></span> |
-                发布时间：<span th:text="${#dates.format(questionDTO.getGmtCreate(),'yyyy-MM-dd')}"></span>
-                </span>
-                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded question_image_style" src="/images/ccc.jpg">
+                            <h4><span th:text="${questionDTO.user.name}"></span></h4>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2><span th:text="${questionDTO.title}"></span></h2>
+                        <span class="text-desc">
+                            阅读数：<span th:text="${questionDTO.viewCount}"></span> |
+                            发布时间：<span th:text="${#dates.format(questionDTO.getGmtCreate(),'yyyy-MM-dd')}"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 question_description_style">
                 <div th:text="${questionDTO.description}"></div>
+                <br>
                 <!--编辑按钮-->
                 <div class="edit-del-style">
                     <a th:href="@{'/publish/'+${questionDTO.id}}" class="community-menu"
@@ -45,17 +56,19 @@
                         <span th:text="${tag}"></span>
                     </div>
                 </div>
-                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <br>
             </div>
             <!--回复评论列表-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 question_comment_style">
                 <h4><span th:text="${questionDTO.commentCount}"></span> 个回复 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment_separate">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment_list" th:each="comment : ${comments}">
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object img-rounded" th:src="${comment.user.avatarUrl}">
+                                <!--<img class="media-object img-rounded" th:src="${comment.user.avatarUrl}">-->
+                                <img class="media-object img-rounded" src="/images/ccc.jpg">
                             </a>
                         </div>
                         <div class="media-body">
@@ -115,20 +128,6 @@
         </div>
         <!--右边列表-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 list">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h3>发起人</h3>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object img-rounded" th:src="${questionDTO.user.avatarUrl}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4><span th:text="${questionDTO.user.name}"></span></h4>
-                    </div>
-                </div>
-            </div>
-            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <img src="/images/aaa.jpg" class="img-thumbnail question_images">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h3>相关问题</h3>

@@ -35,6 +35,12 @@ public class TagCache {
         tool.setCategoryName("开发工具");
         tool.setTags(Arrays.asList("vim","emacs","ide","eclipse","xcode","intellij-idea","textmate","sublime-text","visual-studio","git","github","svn","hg","docker","ci"));
         tagDTOS.add(tool);
+
+//        TagDTO sex = new TagDTO();
+//        sex.setCategoryName("敏感");
+//        sex.setTags(Arrays.asList("JJ","大JJ","B","大B"));
+//        tagDTOS.add(sex);
+
         return tagDTOS;
     }
 

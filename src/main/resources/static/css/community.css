@@ -2,8 +2,15 @@ body{
     background-color: #dedede;
 }
 
+.container-fluid{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+
+/*首页的主内容的样式*/
 .main{
-    margin: 30px;
+    margin: 50px;
     background-color: white;
 }
 
@@ -17,12 +24,40 @@ body{
     width:40px;
     height:40px;
 }
+
+/*问题页面的楼主的头像样式*/
+.question_image_style{
+    width:60px;
+    height:60px;
+    margin-top: 13px;
+    margin-right: 10px;
+}
+
+/*问题页面的整个楼主信息的样式*/
+.question_description_style{
+    margin-left: 66px;
+}
+
+/*问题页面的整个回复评论的样式*/
+.question_comment_style{
+    margin-left: 5px;
+}
+
 /*index.html的内容“几 个回复 •几  次浏览 • 几 分钟前”的样式
 profile.html的作者、阅读数、发布时间的样式*/
 .text-desc{
     font-size: 12px;
     font-weight: normal;
     color: #999;
+}
+
+.index_commend_style{
+    margin-left: 20px;
+}
+
+/*首页页面右边的图片的样式*/
+.index_images_style{
+    width: 100%;
 }
 
 /*问题页面的标签内层样式（标签与标签之间有6px的距离）*/
@@ -132,8 +167,8 @@ profile.html的作者、阅读数、发布时间的样式*/
 
 /*问题页面右边的图片的样式*/
 .question_images{
-    width: 95%;
-    margin-left: 15px;
+    width: 100%;
+    margin-top: 15px;
 }
 
 /*发布页面的标签页里面的标签的样式*/
@@ -146,13 +181,16 @@ profile.html的作者、阅读数、发布时间的样式*/
     border: 3px solid #eee;
     border-radius: 5px;
     display: none;
-    padding: 10px;       //边框距离里面的内容10px
+    padding: 10px;
+    margin-bottom:10px;
 }
 
-/*分布页面的标签页里的标签样式*/
-.publish_tag_style{
-    margin-right: 6px;
+/*发布页面的标签页里的标签样式*/
+.publish-tags-style .label-info{
+    margin: 5px 5px 5px 0px;
     cursor: pointer;
+    white-space: normal;
+    display: inline-block;
 }
 
 /*把发起标题和警告框放在同一行上*/
