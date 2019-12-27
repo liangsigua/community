@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 //重新封装了一个对象，这个对象包括：分页功能 + 遍历数据，这些都传到前端去
-public class PaginationDTO {
-    private List<QuestionDTO> questions;
+public class PaginationDTO<T> {
+    private List<T> data;
     private boolean showFirstPage;
     private boolean showPrevious;
     private boolean showNextPage;
@@ -55,6 +55,14 @@ public class PaginationDTO {
 
     }
 
+    public List<T> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
     public Integer getTotalPage() {
         return totalPage;
     }
@@ -69,14 +77,6 @@ public class PaginationDTO {
 
     public void setPage(Integer page) {
         this.page = page;
-    }
-
-    public List<QuestionDTO> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<QuestionDTO> questions) {
-        this.questions = questions;
     }
 
     public boolean getShowFirstPage() {
@@ -117,5 +117,19 @@ public class PaginationDTO {
 
     public void setPages(List<Integer> pages) {
         this.pages = pages;
+    }
+
+    @Override
+    public String toString() {
+        return "PaginationDTO{" +
+                "data=" + data +
+                ", showFirstPage=" + showFirstPage +
+                ", showPrevious=" + showPrevious +
+                ", showNextPage=" + showNextPage +
+                ", showEndPage=" + showEndPage +
+                ", pages=" + pages +
+                ", page=" + page +
+                ", totalPage=" + totalPage +
+                '}';
     }
 }

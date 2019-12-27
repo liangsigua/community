@@ -2,23 +2,24 @@ package life.majiang.community.service;
 
 import life.majiang.community.dto.CommentDTO;
 import life.majiang.community.enums.CommentTypeEnum;
+import life.majiang.community.enums.NotificationStatusEnum;
+import life.majiang.community.enums.NotificationTypeEnum;
 import life.majiang.community.exception.CustomizeErrorCode;
 import life.majiang.community.exception.CustomizeException;
 import life.majiang.community.mapper.CommentMapper;
+import life.majiang.community.mapper.NotificationMapper;
 import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.Comment;
+import life.majiang.community.model.Notification;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -29,8 +30,11 @@ public class CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private NotificationMapper notificationMapper;
+
     @Transactional
-    public void insert(Comment comment) {
+    public void insert(Comment comment, User notifier) {
         if (comment.getParentId() == null || comment.getParentId() == 0){
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
@@ -45,6 +49,9 @@ public class CommentService {
             }
             commentMapper.insert(comment);
             questionMapper.updateByCommentCount(question.getId());
+            //存储通知数据
+            createNotify(comment, question.getCreator(), NotificationTypeEnum.REPLY_QUESTION, notifier.getName(), question.getTitle(), question.getId());
+
         }else{
             //二级回复评论
             Comment dbComment = commentMapper.getById(comment.getParentId());
@@ -54,7 +61,22 @@ public class CommentService {
             commentMapper.insert(comment);
             //当发布二级评论的时候，把一级回复评论的commentCount加一。这样才能展示出这条一级评论下有多少条二级回复评论
             commentMapper.updateByCommentCount(comment.getParentId());
+            //存储通知数据
+            createNotify(comment, dbComment.getCommentator(), NotificationTypeEnum.REPLY_COMMENT, notifier.getName(), dbComment.getContent(), dbComment.getId());
         }
+    }
+
+    public void createNotify(Comment comment, Long receiver, NotificationTypeEnum notificationTypeEnum, String notifierName, String outerTitle, Long outerId){
+        Notification notification = new Notification();
+        notification.setNotifier(comment.getCommentator());
+        notification.setReceiver(receiver);
+        notification.setOuterId(outerId);
+        notification.setType(notificationTypeEnum.getType());
+        notification.setGmtCreate(System.currentTimeMillis());
+        notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+        notification.setNotifierName(notifierName);
+        notification.setOuterTitle(outerTitle);
+        notificationMapper.insert(notification);
     }
 
     public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {

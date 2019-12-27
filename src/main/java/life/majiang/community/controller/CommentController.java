@@ -29,9 +29,9 @@ public class CommentController {
                        HttpServletRequest request){
         User user = (User)request.getSession().getAttribute("user");
         //如果user为空，说明用户未登陆，返回未登陆提示
-//        if (user == null){
-//            return ResultDTO.of(CustomizeErrorCode.NO_LOGIN);
-//        }
+        if (user == null){
+            return ResultDTO.of(CustomizeErrorCode.NO_LOGIN);
+        }
         //如果回复评论为空，返回回复评论为空提示
 //        if (commentCreateDTO == null || commentCreateDTO.getContent() == null || commentCreateDTO.getContent() == ""){
         if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())){    //上面要判断两次，这里使用了commons-lang3工具来代替
@@ -45,7 +45,7 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setLikeCount(0);
-        commentService.insert(comment);
+        commentService.insert(comment, user);
         return ResultDTO.ok();
     }
 

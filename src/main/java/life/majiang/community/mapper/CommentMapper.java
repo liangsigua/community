@@ -20,4 +20,7 @@ public interface CommentMapper {
     //当发布二级评论的时候，把一级回复评论的commentCount回复数加一
     @Update("update comment set comment_count= comment_count + 1 where id=#{id}")
     void updateByCommentCount(@Param("id") Long id);
+
+    @Select("select * from comment where id=#{id}")
+    Comment getByCommentator(@Param("id") Long id);
 }

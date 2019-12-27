@@ -36,4 +36,5 @@ public interface QuestionMapper {
 
     @Select("select * from question where id != #{id} and tag regexp #{tag}")
     List<Question> selectRelated(@Param("id")Long id, @Param("tag")String tag);
+
 }

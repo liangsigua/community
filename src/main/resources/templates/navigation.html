@@ -19,8 +19,13 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <!--提问按钮-->
                 <li th:if="${session.user != null}">
                     <a href="/publish">提问</a>
+                </li>
+                <!--通知按钮-->
+                <li th:if="${session.user != null}">
+                    <a th:href="${'/profile/replies'}">通知 <span class="badge">42</span></a>
                 </li>
                 <!--下拉框-->
                 <li class="dropdown" th:if="${session.user != null}">

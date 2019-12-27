@@ -5,7 +5,7 @@ CREATE TABLE comment
     type INT NOT NULL,
     commentator INT NOT NULL,
     content VARCHAR(1024) NOT NULL,
-    gmt_create BIGINT NOT NULL,
+    gmtCreate BIGINT NOT NULL,
     gmt_modified BIGINT NOT NULL,
     like_count BIGINT DEFAULT 0
 );
