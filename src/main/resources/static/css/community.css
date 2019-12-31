@@ -34,8 +34,13 @@ body{
 }
 
 /*问题页面的整个楼主信息的样式*/
-.question_description_style{
+.question_description_edit_tag_style{
     margin-left: 66px;
+}
+
+/*问题页面的描述的样式*/
+.question_description_edit_tag_style .description_style{
+    width: 900px;
 }
 
 /*问题页面的整个回复评论的样式*/

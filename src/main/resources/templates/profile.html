@@ -40,11 +40,11 @@
                 <div th:each="n:${notify}">
                     <!--一级评论 回复了 问题
                         二级评论 回复了 一级评论-->
-                    <div th:each="datas:${n.data}">
-                        <span th:text="${datas.notifierName}"></span>
-                        <span th:text="${datas.typeName}"></span>
-                        <a th:href=""><span th:text="${datas.outerTitle}"></span></a>
-                    </div>
+                    <!--<div th:each="datas:${n.data}">-->
+                        <!--<span th:text="${datas.notifierName}"></span>-->
+                        <!--<span th:text="${datas.typeName}"></span>-->
+                        <!--<a th:href=""><span th:text="${datas.outerTitle}"></span></a>-->
+                    <!--</div>-->
 
                     <hr>
                 </div>
