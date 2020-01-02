@@ -40,7 +40,7 @@ body{
 
 /*问题页面的描述的样式*/
 .question_description_edit_tag_style .description_style{
-    width: 900px;
+    width: 90%;
 }
 
 /*问题页面的整个回复评论的样式*/
@@ -208,4 +208,10 @@ profile.html的作者、阅读数、发布时间的样式*/
     display: inline-block;
     margin-left: 20px;
     margin-bottom: 0px;
+}
+
+/*通知消息的样式*/
+.notification_style{
+    margin-bottom: 7px;
+    font-size: 16px;
 }

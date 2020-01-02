@@ -62,7 +62,7 @@ public class CommentService {
             //当发布二级评论的时候，把一级回复评论的commentCount加一。这样才能展示出这条一级评论下有多少条二级回复评论
             commentMapper.updateByCommentCount(comment.getParentId());
             //存储通知数据
-            createNotify(comment, dbComment.getCommentator(), NotificationTypeEnum.REPLY_COMMENT, notifier.getName(), dbComment.getContent(), dbComment.getId());
+            createNotify(comment, dbComment.getCommentator(), NotificationTypeEnum.REPLY_COMMENT, notifier.getName(), dbComment.getContent(), dbComment.getParentId());
         }
     }
 

@@ -49,8 +49,7 @@ public class ProfileController {
         }else if ("replies".equals(active)){
             //需要查询问题和分页栏数据
             PaginationDTO paginationDTO = notificationService.listByUserId(user.getId(), page, size);
-            System.out.println(paginationDTO);
-            model.addAttribute("notify", paginationDTO);
+            model.addAttribute("paginationDTO", paginationDTO);
 
             model.addAttribute("section", "replies");
             model.addAttribute("sectionName", "最新回答");
