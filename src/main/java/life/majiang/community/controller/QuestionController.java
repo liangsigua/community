@@ -4,6 +4,7 @@ import life.majiang.community.dto.CommentDTO;
 import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.enums.CommentTypeEnum;
 import life.majiang.community.model.Question;
+import life.majiang.community.model.User;
 import life.majiang.community.service.CommentService;
 import life.majiang.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,13 @@ public class QuestionController {
     @Autowired
     private CommentService commentService;
     @GetMapping("/question/{id}")
-    public String question(@PathVariable("id") Long id, Model model){
+    public String question(@PathVariable("id") Long id, Model model, HttpServletRequest request){
+        //预防在另一个浏览器里打开当前浏览器已登录的用户页面
+//        User user = (User)request.getSession().getAttribute("user");
+//        if (user == null){
+//            return "redirect:/";
+//        }
+
         //点赞数叠加
         questionService.incView(id);
         //获取问题

@@ -66,17 +66,20 @@ public class CommentService {
         }
     }
 
+    //存储通知数据
     public void createNotify(Comment comment, Long receiver, NotificationTypeEnum notificationTypeEnum, String notifierName, String outerTitle, Long outerId){
-        Notification notification = new Notification();
-        notification.setNotifier(comment.getCommentator());
-        notification.setReceiver(receiver);
-        notification.setOuterId(outerId);
-        notification.setType(notificationTypeEnum.getType());
-        notification.setGmtCreate(System.currentTimeMillis());
-        notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
-        notification.setNotifierName(notifierName);
-        notification.setOuterTitle(outerTitle);
-        notificationMapper.insert(notification);
+        if (!receiver.equals(comment.getCommentator())){
+            Notification notification = new Notification();
+            notification.setNotifier(comment.getCommentator());
+            notification.setReceiver(receiver);
+            notification.setOuterId(outerId);
+            notification.setType(notificationTypeEnum.getType());
+            notification.setGmtCreate(System.currentTimeMillis());
+            notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+            notification.setNotifierName(notifierName);
+            notification.setOuterTitle(outerTitle);
+            notificationMapper.insert(notification);
+        }
     }
 
     public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {

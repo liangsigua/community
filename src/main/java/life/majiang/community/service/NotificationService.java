@@ -61,8 +61,7 @@ public class NotificationService {
     }
 
     public Long unread(Long userId) {
-        Long count = notificationMapper.unreadCount(userId);
-        return count;
+        return notificationMapper.unreadCount(userId);
     }
 
     //逻辑：把当前问题的status设置成已读，再存入到数据库里
