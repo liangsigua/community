@@ -26,9 +26,18 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public PaginationDTO list(Integer page, Integer size){
+    public PaginationDTO list(Integer page, Integer size, String search){
+        if (StringUtils.isNotBlank(search)){
+            String[] split = StringUtils.split(search, " ");
+            search = Arrays.stream(split).collect(Collectors.joining("|"));
+        }
         PaginationDTO paginationDTO = new PaginationDTO();
-        Integer totalCount = questionMapper.count();       //通过查询得到question表的数据总数(eg: 34)
+        Integer totalCount;
+        if (StringUtils.isNotBlank(search)){
+            totalCount = questionMapper.countBySearch(search);
+        }else{
+            totalCount = questionMapper.count();
+        }
         Integer totalPage;
         //34除于5等于6页，还余4，所以共7页
         if (totalCount % size == 0){
@@ -48,7 +57,12 @@ public class QuestionService {
         //通过size*(page-1)来算出limit，应该查询出怎样的数据
         Integer offset = size * (page - 1);
         //之前是展示所有数据，现在要做分页功能，所以改成了一次展示5条数据
-        List<Question> questionList = questionMapper.list(offset, size);
+        List<Question> questionList;
+        if (StringUtils.isNotBlank(search)){
+            questionList = questionMapper.listBySearch(offset, size, search);
+        }else{
+            questionList = questionMapper.list(offset, size);
+        }
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questionList) {

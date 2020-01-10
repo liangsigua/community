@@ -24,11 +24,6 @@ public class QuestionController {
     private CommentService commentService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id, Model model, HttpServletRequest request){
-        //预防在另一个浏览器里打开当前浏览器已登录的用户页面
-//        User user = (User)request.getSession().getAttribute("user");
-//        if (user == null){
-//            return "redirect:/";
-//        }
 
         //点赞数叠加
         questionService.incView(id);
