@@ -1,16 +1,20 @@
 body{
     background-color: #dedede;
 }
-
+/*导航栏的样式*/
 .container-fluid{
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 10px;
 }
 
-/*首页的主内容的样式*/
+/*提问通知用户名的整体样式（下移一点）*/
+.navbar-right{
+    margin-top: 8px;
+}
+
+/*首页的整个主内容的样式*/
 .main{
-    margin: 50px;
+    margin: 50px 50px 20px 50px;
     background-color: white;
 }
 
@@ -214,4 +218,10 @@ profile.html的作者、阅读数、发布时间的样式*/
 .notification_style{
     margin-bottom: 7px;
     font-size: 16px;
+}
+
+/*页尾的样式*/
+.footer{
+    color: #666;
+    padding: 0px 30%;
 }
