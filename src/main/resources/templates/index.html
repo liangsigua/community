@@ -23,7 +23,7 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
-            <h2><span>最新话题</span></h2>
+            <h2><span th:text="${search == null}? '最新话题':'相关问题'"></span></h2>
             <br>
             <div class="index_commend_style">
                 <div class="media" th:each="question : ${paginationDTO.data}">
