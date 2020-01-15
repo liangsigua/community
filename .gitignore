@@ -4,7 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 fff.jpg
-community.log
+logs/
 
 ### STS ###
 .apt_generated

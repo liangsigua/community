@@ -1,8 +1,10 @@
 package life.majiang.community.dto;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
 //重新封装了一个对象，这个对象包括：分页功能 + 遍历数据，这些都传到前端去
 public class PaginationDTO<T> {
     private List<T> data;
@@ -52,84 +54,5 @@ public class PaginationDTO<T> {
         }else{
             showEndPage = true;
         }
-
-    }
-
-    public List<T> getData() {
-        return data;
-    }
-
-    public void setData(List<T> data) {
-        this.data = data;
-    }
-
-    public Integer getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
-    }
-
-    public boolean getShowFirstPage() {
-        return showFirstPage;
-    }
-
-    public void setShowFirstPage(boolean showFirstPage) {
-        this.showFirstPage = showFirstPage;
-    }
-
-    public boolean getShowPrevious() {
-        return showPrevious;
-    }
-
-    public void setShowPrevious(boolean showPrevious) {
-        this.showPrevious = showPrevious;
-    }
-
-    public boolean getShowNextPage() {
-        return showNextPage;
-    }
-
-    public void setShowNextPage(boolean showNextPage) {
-        this.showNextPage = showNextPage;
-    }
-
-    public boolean getShowEndPage() {
-        return showEndPage;
-    }
-
-    public void setShowEndPage(boolean showEndPage) {
-        this.showEndPage = showEndPage;
-    }
-
-    public List<Integer> getPages() {
-        return pages;
-    }
-
-    public void setPages(List<Integer> pages) {
-        this.pages = pages;
-    }
-
-    @Override
-    public String toString() {
-        return "PaginationDTO{" +
-                "data=" + data +
-                ", showFirstPage=" + showFirstPage +
-                ", showPrevious=" + showPrevious +
-                ", showNextPage=" + showNextPage +
-                ", showEndPage=" + showEndPage +
-                ", pages=" + pages +
-                ", page=" + page +
-                ", totalPage=" + totalPage +
-                '}';
     }
 }
