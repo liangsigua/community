@@ -26,7 +26,7 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public PaginationDTO list(Integer page, Integer size, String search){
+    public PaginationDTO list(Integer page, Integer size, String search, String tag){
         if (StringUtils.isNotBlank(search)){
             String[] split = StringUtils.split(search, " ");
             search = Arrays.stream(split).collect(Collectors.joining("|"));
@@ -35,6 +35,8 @@ public class QuestionService {
         Integer totalCount;
         if (StringUtils.isNotBlank(search)){
             totalCount = questionMapper.countBySearch(search);
+        }else if (StringUtils.isNotBlank(tag)) {
+            totalCount = questionMapper.countByTag(tag);
         }else{
             totalCount = questionMapper.count();
         }
@@ -60,6 +62,8 @@ public class QuestionService {
         List<Question> questionList;
         if (StringUtils.isNotBlank(search)){
             questionList = questionMapper.listBySearch(offset, size, search);
+        }else if (StringUtils.isNotBlank(tag)) {
+            questionList = questionMapper.listByTag(offset, size, tag);
         }else{
             questionList = questionMapper.list(offset, size);
         }

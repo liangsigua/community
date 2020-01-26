@@ -45,29 +45,29 @@
                     <ul class="pagination">
                         <!--分页栏里的首页-->
                         <li th:if="${paginationDTO.showFirstPage}">
-                            <a th:href="@{/(page=1, search=${search})}" aria-label="Previous">
+                            <a th:href="@{/(page=1, search=${search}, tag=${tag})}" aria-label="Previous">
                                 <span aria-hidden="true">&lt;&lt;</span>
                             </a>
                         </li>
                         <!--分页栏里的上一页-->
                         <li th:if="${paginationDTO.showPrevious}">
-                            <a th:href="@{/(page=${paginationDTO.page - 1}, search=${search})}" aria-label="Previous">
+                            <a th:href="@{/(page=${paginationDTO.page - 1}, search=${search}, tag=${tag})}" aria-label="Previous">
                                 <span aria-hidden="true">&lt;</span>
                             </a>
                         </li>
                         <!--分页栏里的1、2、3、4-->
                         <li th:each="page:${paginationDTO.pages}" th:class="${paginationDTO.page == page}?'active' : ''">
-                            <a th:text="${page}" th:href="@{/(page=${page}, search=${search})}"></a>
+                            <a th:text="${page}" th:href="@{/(page=${page}, search=${search}, tag=${tag})}"></a>
                         </li>
                         <!--分页栏里的下一页-->
                         <li th:if="${paginationDTO.showNextPage}">
-                            <a th:href="@{/(page=${paginationDTO.page + 1}, search=${search})}" aria-label="Next">
+                            <a th:href="@{/(page=${paginationDTO.page + 1}, search=${search}, tag=${tag})}" aria-label="Next">
                                 <span aria-hidden="true">&gt;</span>
                             </a>
                         </li>
                         <!--分页栏里的末页-->
                         <li th:if="${paginationDTO.showEndPage}">
-                            <a th:href="@{/(page=${paginationDTO.totalPage}, search=${search})}" aria-label="Next">
+                            <a th:href="@{/(page=${paginationDTO.totalPage}, search=${search}, tag=${tag})}" aria-label="Next">
                                 <span aria-hidden="true">&gt;&gt;</span>
                             </a>
                         </li>
@@ -80,9 +80,14 @@
             <h4><a href="">如何缓解压力？</a></h4>
             <img src="/images/bbb.jpg" class="img-thumbnail index_images_style">
             <br>
-            <h3>热闹话题</h3>
-            <a href="">如何学习java</a><br>
-            <a href="">如何学习javaScript</a>
+            <br>
+            <h4>热门话题</h4>
+            <div th:each="HotTag : ${tags}" class="hot_question">
+                <span class="label label-info">
+                    <a th:href="@{/(page=1, search=${search}, tag=${HotTag.name})}" th:text="${HotTag.name}" class="tag_color"></a>
+                </span>
+                <span class="how_many_questions" th:text="${HotTag.priority} + '个问题'"></span>
+            </div>
             <br>
             <br>
         </div>

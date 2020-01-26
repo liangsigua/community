@@ -69,6 +69,23 @@ profile.html的作者、阅读数、发布时间的样式*/
     width: 100%;
 }
 
+/*热门话题的“标签”的样式*/
+.hot_question{
+    line-height: 36px;
+    font-size: 20px;
+    color: #999;
+}
+/*热门话题的“多少个问题”的样式*/
+.hot_question .how_many_questions{
+    font-size: 13px;
+    margin-left: 10px;
+}
+/*热门话题的标签里面的文字的样式（字体颜色从A链接默认的黑色改成白字）*/
+.hot_question .tag_color{
+    color: white;
+    cursor: pointer;
+}
+
 /*问题页面的标签内层样式（标签与标签之间有6px的距离）*/
 .tag_style{
     margin-right: 6px;

@@ -16,13 +16,19 @@ public interface QuestionMapper {
     //使用搜索功能来根据分页栏规律（0，5）来查询出每一页的数据
     @Select("select * from question where title regexp #{search} limit #{offset}, #{size}")
     List<Question> listBySearch(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size, @Param(value = "search") String search);
+    //使用热门话题功能来根据分页栏规律（0，5）来查询出每一页的数据
+    @Select("select * from question where tag regexp #{tag} limit #{offset}, #{size}")
+    List<Question> listByTag(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size, @Param(value = "tag") String tag);
+
     //总数量（分页栏要使用的总数量）
     @Select("select count(*) from question")
     Integer count();
     //搜索功能搜索关键字得出的总数量（分页栏要使用的总数量）
     @Select("select count(*) from question where title regexp #{search}")
     Integer countBySearch(@Param(value = "search") String search);
-
+    //热门话题功能搜索关键字得出的总数量（分页栏要使用的总数量）
+    @Select("select count(*) from question where tag regexp #{tag}")
+    Integer countByTag(@Param(value = "tag") String tag);
 
     @Select("select count(1) from question where creator=#{id}")
     Integer countByUserId(@Param(value = "id") Long id);
@@ -44,5 +50,6 @@ public interface QuestionMapper {
 
     @Select("select * from question where id != #{id} and tag regexp #{tag}")
     List<Question> selectRelated(@Param("id")Long id, @Param("tag")String tag);
+
 
 }
